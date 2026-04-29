@@ -101,6 +101,44 @@
       border-color: var(--gold-lt);
     }
 
+    /* ── LANGUAGE SWITCHER ── */
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .lang-switch {
+      display: flex;
+      border: 1px solid var(--rule);
+      border-radius: 3px;
+      overflow: hidden;
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+
+    .lang-switch a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 6px 12px;
+      color: var(--ink-dim);
+      background: transparent;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .lang-switch a.active {
+      background: var(--gold);
+      color: var(--paper);
+    }
+
+    .lang-switch a:not(.active):hover {
+      background: var(--cream);
+      color: var(--ink);
+    }
+
     /* ── LAYOUT ── */
     main {
       max-width: 900px;
@@ -364,6 +402,7 @@
       .resume-grid { grid-template-columns: 1fr; gap: 8px 0; }
       .resume-heading { border-top: none; border-left: 2px solid var(--gold-lt); padding-left: 12px; margin-bottom: 16px; }
       nav { gap: 20px; flex-wrap: wrap; }
+      .header-top { flex-direction: column; gap: 16px; }
     }
 
     /* ── FADE IN ── */
@@ -382,7 +421,13 @@
 
 <header>
   <div class="header-inner">
-    <h1 class="name">Tommaso <em>Annoni</em></h1>
+    <div class="header-top">
+      <h1 class="name">Tommaso <em>Annoni</em></h1>
+      <div class="lang-switch">
+        <a href="index.html" class="active">EN</a>
+        <a href="index-ita.html">IT</a>
+      </div>
+    </div>
     <p class="tagline">Composer &nbsp;·&nbsp; Sound Designer &nbsp;·&nbsp; Flutist &nbsp;·&nbsp; Educator</p>
     <nav>
       <a href="#about">About</a>
@@ -593,7 +638,7 @@
 <footer>
   <div class="footer-inner">
     <p>Tommaso Annoni &nbsp;·&nbsp; Composer &amp; Flutist</p>
-    <p><a href="mailto:">Contact</a> &nbsp;·&nbsp; <span style="font-style:italic">Italian version coming soon</span></p>
+    <p><a href="mailto:">Contact</a></p>
   </div>
 </footer>
 
