@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tommaso Annoni — Composer & Flutist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Libre+Baskerville:ital@0;1&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:     #1a1712;
+      --ink-mid: #4a453e;
+      --ink-dim: #8a8075;
+      --paper:   #f5f0e8;
+      --cream:   #ede7d9;
+      --gold:    #8b6914;
+      --gold-lt: #c9a84c;
+      --rule:    rgba(26,23,18,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 15px;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: relative;
+      padding: 80px 60px 60px;
+      border-bottom: 1px solid var(--rule);
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 420px; height: 420px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(139,105,20,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      line-height: 1.05;
+      color: var(--ink);
+    }
+
+    .name em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .tagline {
+      margin-top: 14px;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+    }
+
+    nav {
+      margin-top: 32px;
+      display: flex;
+      gap: 32px;
+    }
+
+    nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--gold);
+      border-color: var(--gold-lt);
+    }
+
+    /* ── LAYOUT ── */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 60px 100px;
+    }
+
+    section {
+      padding-top: 72px;
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    /* ── ABOUT ── */
+    .about-text {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--ink);
+      max-width: 720px;
+    }
+
+    .about-text strong {
+      font-weight: 600;
+    }
+
+    .awards {
+      margin-top: 48px;
+      border-top: 1px solid var(--rule);
+      padding-top: 36px;
+    }
+
+    .awards-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+      margin-bottom: 20px;
+    }
+
+    .award-list {
+      list-style: none;
+      display: grid;
+      gap: 16px;
+    }
+
+    .award-list li {
+      display: grid;
+      grid-template-columns: 18px 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .award-list li::before {
+      content: '◆';
+      font-size: 7px;
+      color: var(--gold);
+      margin-top: 6px;
+    }
+
+    .award-list li strong {
+      font-style: italic;
+      font-weight: normal;
+    }
+
+    .award-list li span {
+      display: block;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--ink-dim);
+      margin-top: 2px;
+    }
+
+    /* ── RESUME SECTION ── */
+    .resume-grid {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 0 48px;
+    }
+
+    .resume-block {
+      margin-bottom: 52px;
+    }
+
+    .resume-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .resume-heading {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      padding-top: 4px;
+      padding-right: 24px;
+      border-top: 1px solid var(--gold-lt);
+    }
+
+    .resume-content { }
+
+    .job {
+      margin-bottom: 32px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .job:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .job-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .job-meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-dim);
+      margin-top: 4px;
+      margin-bottom: 10px;
+    }
+
+    .job-desc {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--ink-mid);
+    }
+
+    .job-desc ul {
+      list-style: none;
+      margin-top: 6px;
+    }
+
+    .job-desc ul li {
+      display: grid;
+      grid-template-columns: 16px 1fr;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .job-desc ul li::before {
+      content: '–';
+      color: var(--ink-dim);
+    }
+
+    /* Works list (compact) */
+    .works-inline {
+      font-size: 13.5px;
+      color: var(--ink-mid);
+      line-height: 1.7;
+    }
+
+    .works-inline em {
+      font-style: italic;
+      color: var(--ink);
+    }
+
+    /* Education */
+    .edu-item {
+      margin-bottom: 24px;
+    }
+
+    .edu-degree {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .edu-school {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-dim);
+      margin-top: 3px;
+    }
+
+    .edu-note {
+      font-size: 13.5px;
+      color: var(--ink-mid);
+      margin-top: 4px;
+    }
+
+    /* Skills tags */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 4px 10px;
+      border: 1px solid var(--rule);
+      color: var(--ink-mid);
+      background: var(--cream);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 32px 60px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-inner p {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--ink-dim);
+    }
+
+    .footer-inner a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 680px) {
+      header { padding: 48px 24px 40px; }
+      main { padding: 0 24px 60px; }
+      footer { padding: 24px; }
+      .resume-grid { grid-template-columns: 1fr; gap: 8px 0; }
+      .resume-heading { border-top: none; border-left: 2px solid var(--gold-lt); padding-left: 12px; margin-bottom: 16px; }
+      nav { gap: 20px; flex-wrap: wrap; }
+    }
+
+    /* ── FADE IN ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .name     { animation: fadeUp 0.7s ease both; }
+    .tagline  { animation: fadeUp 0.7s 0.1s ease both; }
+    nav       { animation: fadeUp 0.7s 0.2s ease both; }
+    #about    { animation: fadeUp 0.7s 0.3s ease both; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <h1 class="name">Tommaso <em>Annoni</em></h1>
+    <p class="tagline">Composer &nbsp;·&nbsp; Sound Designer &nbsp;·&nbsp; Flutist &nbsp;·&nbsp; Educator</p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#resume">Experience</a>
+      <a href="#education">Education</a>
+      <a href="mailto:">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ── ABOUT ── -->
+  <section id="about">
+    <p class="section-label">About</p>
+
+    <p class="about-text">
+      Tommaso Annoni is an Italian <strong>composer, sound designer, and flutist</strong> working across videogames, film, and television. His work spans original scoring, orchestration, and audio post-production, with credits ranging from award-winning indie games to international documentary and fiction productions. He also performs on orchestral and ethnic flutes, and works as a music educator.
+    </p>
+
+    <div class="awards">
+      <p class="awards-title">Selected awards &amp; distinctions</p>
+      <ul class="award-list">
+        <li>
+          <div>
+            <strong>Daedalus</strong> — Flutist
+            <span>Fox Production Grant · Selection &amp; screening at Festival de Cannes 2024</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>Sky Blossom</strong> — Assistant Conductor
+            <span>Best Documentary Feature · Yellowstone International Film Festival 2021</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>Two Interviewees</strong> — Composer
+            <span>Treccani Award for Excellence in Italian Web</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>Impariamo l'Opera</strong> — Orchestrator
+            <span>Filippo Siebaneck Award · Franco Abbiati Italian Music Critics Award</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── EXPERIENCE ── -->
+  <section id="resume">
+    <p class="section-label">Experience</p>
+
+    <div class="resume-grid">
+
+      <!-- Audio Post-Production -->
+      <div class="resume-heading">Audio Post-Production</div>
+      <div class="resume-content">
+        <div class="job">
+          <p class="job-title">Audio Post-Production Intern</p>
+          <p class="job-meta">Soundtrack srl · Rome, Italy · Mar 2025 – Jan 2026</p>
+          <div class="job-desc">
+            <ul>
+              <li><span>Dialogue restoration and cleanup (de-noise, de-click, de-clip, de-reverb) for TV and reality productions using iZotope RX and spectral tools.</span></li>
+              <li><span>Quality control for audio-video sync, broadcast loudness, and delivery for Italian TV distribution.</span></li>
+              <li><span>Workflow optimisation and corrective processing to meet broadcast standards.</span></li>
+            </ul>
+            <div class="tags" style="margin-top:12px">
+              <span class="tag">iZotope RX</span><span class="tag">Nuendo</span><span class="tag">Spectral editing</span><span class="tag">Broadcast delivery</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Composition & Scoring -->
+      <div class="resume-heading">Composition &amp; Scoring</div>
+      <div class="resume-content">
+        <div class="job">
+          <p class="job-title">Composer Assistant &amp; Music Editor</p>
+          <p class="job-meta">Selected clients · USA · 2021 – 2024</p>
+          <div class="job-desc">
+            <p>Additional writing, mockup production, editing, conforming, and QA for TV, film, and streaming projects. Session and database management in Pro Tools and Logic.</p>
+            <p style="margin-top:8px; font-size:13px; color:var(--ink-dim)">Clients: Nathan Barr · Jim Dooley · Penka Kouneva · Vivien Villani · Neither Nor Publishing</p>
+          </div>
+        </div>
+        <div class="job">
+          <p class="job-title">Composer for Short Films</p>
+          <p class="job-meta">Independent · 2016 – 2024</p>
+          <div class="job-desc works-inline">
+            <em>Cutthroat</em> (dark noir) · <em>Clean Plate</em> (comedy) · <em>Freehold</em> (coming of age) · <em>Under the Rug</em> (family drama)
+          </div>
+        </div>
+        <div class="job">
+          <p class="job-title">Composer &amp; Sound Designer for Videogames</p>
+          <p class="job-meta">Independent · 2016 – present</p>
+          <div class="job-desc works-inline">
+            <em>Two Interviewees</em> · <em>Wisper</em> · <em>Ham-Ham</em> · <em>LORE</em> · <em>FISKUR</em> · <em>Dextra</em> · <em>Land Under Rot</em> · <em>Niverdia</em> (in development) · <em>Project Zalmoxis</em> (in development) · <em>Vertigo</em> (in development)
+          </div>
+        </div>
+        <div class="job">
+          <p class="job-title">Composer, Blue Pink Music Group</p>
+          <p class="job-meta">2020 – 2022</p>
+        </div>
+        <div class="job">
+          <p class="job-title">Music Editor, <em>The Case of the Christmas Diamond</em></p>
+          <p class="job-meta">Feature film · 2022</p>
+        </div>
+        <div class="job">
+          <p class="job-title">Music Librarian, <em>The Great</em> — Season 2</p>
+          <p class="job-meta">Hulu</p>
+        </div>
+      </div>
+
+      <!-- Orchestration -->
+      <div class="resume-heading">Orchestration &amp; Conducting</div>
+      <div class="resume-content">
+        <div class="job">
+          <p class="job-title">Orchestrator, Imagine Philharmonic Orchestra</p>
+          <p class="job-meta">2022 – 2024</p>
+        </div>
+        <div class="job">
+          <p class="job-title">Orchestrator, Synesthesia Sinfonietta</p>
+          <p class="job-meta">2021 – 2022</p>
+        </div>
+        <div class="job">
+          <p class="job-title">Assistant Conductor, <em>Sky Blossom</em></p>
+          <p class="job-meta">Sky Blossom Films · 2020</p>
+          <p class="job-desc">Best Documentary Feature, Yellowstone International Film Festival 2021.</p>
+        </div>
+        <div class="job">
+          <p class="job-title">Arranger, Orchestrator &amp; Woodwinds — Berklee Motion Picture Orchestra</p>
+          <p class="job-meta">Berklee College of Music · 2017 – 2020</p>
+          <p class="job-desc">Principal Flute, Piccolo, and Woodwind section leader. Concerts, recording sessions, and score preparation.</p>
+        </div>
+        <div class="job">
+          <p class="job-title">Orchestrator, <em>Imparo l'Opera</em></p>
+          <p class="job-meta">Teatro Regio di Parma · 2009</p>
+          <p class="job-desc">Verdi opera reductions for concert series. Recipient of the Filippo Siebaneck Award at the Franco Abbiati Italian Music Critics Award.</p>
+        </div>
+      </div>
+
+      <!-- Flute -->
+      <div class="resume-heading">Flute Performance</div>
+      <div class="resume-content">
+        <div class="job">
+          <p class="job-title">Orchestral &amp; Studio Flutist</p>
+          <p class="job-meta">Various · ongoing</p>
+          <div class="job-desc">
+            <p>Orchestral flute and ethnic flutes for film, TV, and recording sessions. Selected appearances:</p>
+            <ul style="margin-top:8px">
+              <li><span><em>Daedalus</em> (Fox Production Grant, Cannes 2024 selection)</span></li>
+              <li><span>Berklee Contemporary Symphony Orchestra — <em>The Lord of the Rings Suite</em> at Boston Symphony Hall, in the presence of Howard Shore</span></li>
+              <li><span>Qantara Orchestra · Audire Soundtrack Orchestra · Film Scoring Studio Orchestra</span></li>
+              <li><span>Album recording and release concert, <em>Lullaby</em> by pianist Bee Uyen Phuong</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Academic -->
+      <div class="resume-heading">Academic &amp; Teaching</div>
+      <div class="resume-content">
+        <div class="job">
+          <p class="job-title">Assistant, Video Game Scoring Dept.</p>
+          <p class="job-meta">Berklee College of Music · 2019 – 2020</p>
+        </div>
+        <div class="job">
+          <p class="job-title">Core Music Tutor</p>
+          <p class="job-meta">Berklee College of Music · 2018 – 2019</p>
+        </div>
+        <div class="job">
+          <p class="job-title">Speaker — Interactive Music in Videogames</p>
+          <p class="job-meta">Game Music and Sound Design Conference (GSC) · 2021</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── EDUCATION ── -->
+  <section id="education">
+    <p class="section-label">Education</p>
+
+    <div class="resume-grid">
+      <div class="resume-heading">Degrees</div>
+      <div class="resume-content">
+        <div class="edu-item">
+          <p class="edu-degree">Bachelor of Music — Film Scoring &amp; Video Game Scoring, <em>Cum Laude</em></p>
+          <p class="edu-school">Berklee College of Music · Boston, MA · 2016 – 2020</p>
+          <p class="edu-note">Berklee Merit Scholarship · Dean's List</p>
+        </div>
+        <div class="edu-item">
+          <p class="edu-degree">Bachelor of Arts — Visual and Performing Arts, <em>Magna Cum Laude</em></p>
+          <p class="edu-school">IUAV — Istituto Universitario di Architettura di Venezia · Venice, Italy · 2010 – 2015</p>
+        </div>
+        <div class="edu-item">
+          <p class="edu-degree">Bachelor of Music — Flute Performance</p>
+          <p class="edu-school">Conservatorio di Musica Arrigo Boito · Parma, Italy · 2004 – 2010</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <p>Tommaso Annoni &nbsp;·&nbsp; Composer &amp; Flutist</p>
+    <p><a href="mailto:">Contact</a> &nbsp;·&nbsp; <span style="font-style:italic">Italian version coming soon</span></p>
+  </div>
+</footer>
+
+</body>
+</html>
