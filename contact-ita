@@ -292,7 +292,7 @@ main     { animation: fadeUp 0.7s 0.3s ease both; }
   <section>
     <p class="section-label">Contatti</p>
     <p class="about-text" style="margin-bottom:24px">Per collaborazioni, commissioni o qualsiasi richiesta, scrivimi pure.</p>
-    <p class="contact-email">tommasoannoni [at] gmail [dot] com</p>
+    <p class="contact-email">tomannonimusic [at] gmail [dot] com</p>
   </section>
 </main>
 <footer>
