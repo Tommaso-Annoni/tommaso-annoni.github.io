@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tommaso Annoni — Compositore e Flautista</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Libre+Baskerville:ital@0;1&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink:     #1a1712;
+  --ink-mid: #4a453e;
+  --ink-dim: #8a8075;
+  --paper:   #f5f0e8;
+  --cream:   #ede7d9;
+  --gold:    #8b6914;
+  --gold-lt: #c9a84c;
+  --rule:    rgba(26,23,18,0.12);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 15px;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* HEADER */
+header {
+  position: relative;
+  padding: 80px 60px 60px;
+  border-bottom: 1px solid var(--rule);
+  overflow: hidden;
+}
+header::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 420px; height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(139,105,20,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.header-inner { max-width: 900px; margin: 0 auto; }
+.header-top { display: flex; justify-content: space-between; align-items: flex-start; }
+
+.name {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+  color: var(--ink);
+}
+.name em { font-style: italic; color: var(--gold); }
+.name a { text-decoration: none; color: inherit; }
+
+.tagline {
+  margin-top: 14px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+/* LANG SWITCH */
+.lang-switch {
+  display: flex;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  overflow: hidden;
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+.lang-switch a {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 6px 12px;
+  color: var(--ink-dim);
+  background: transparent;
+  transition: background 0.15s, color 0.15s;
+}
+.lang-switch a.active { background: var(--gold); color: var(--paper); }
+.lang-switch a:not(.active):hover { background: var(--cream); color: var(--ink); }
+
+/* NAV */
+nav { margin-top: 32px; display: flex; gap: 32px; flex-wrap: wrap; }
+nav a {
+  font-family: 'DM Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+nav a:hover { color: var(--gold); border-color: var(--gold-lt); }
+nav a.active { color: var(--gold); border-bottom: 1px solid var(--gold); }
+
+/* LAYOUT */
+main { max-width: 900px; margin: 0 auto; padding: 0 60px 100px; }
+section { padding-top: 72px; }
+
+.section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+
+/* ABOUT */
+.about-text {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--ink);
+  max-width: 720px;
+}
+.about-text strong { font-weight: 600; }
+
+.awards { margin-top: 48px; border-top: 1px solid var(--rule); padding-top: 36px; }
+.awards-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin-bottom: 20px;
+}
+.award-list { list-style: none; display: grid; gap: 16px; }
+.award-list li { display: grid; grid-template-columns: 18px 1fr; gap: 12px; align-items: start; }
+.award-list li::before { content: '◆'; font-size: 7px; color: var(--gold); margin-top: 6px; }
+.award-list li strong { font-style: italic; font-weight: normal; }
+.award-list li span {
+  display: block;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--ink-dim);
+  margin-top: 2px;
+}
+
+/* RESUME GRID */
+.resume-grid { display: grid; grid-template-columns: 200px 1fr; gap: 0 48px; }
+
+.resume-heading {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding-top: 4px;
+  padding-right: 24px;
+  border-top: 1px solid var(--gold-lt);
+  /* Extra top margin to separate from previous section */
+  margin-top: 48px;
+}
+/* Remove top margin from very first heading */
+.resume-grid > .resume-heading:first-child { margin-top: 0; }
+
+/* Match the content block margin to the heading */
+.resume-grid > .resume-content {
+  margin-top: 48px;
+}
+.resume-grid > .resume-content:first-of-type { margin-top: 0; }
+
+.job { margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid var(--rule); }
+.job:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+
+.job-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.job-meta {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--ink-dim);
+  margin-top: 4px;
+  margin-bottom: 10px;
+}
+.job-desc { font-size: 14px; line-height: 1.75; color: var(--ink-mid); }
+.job-desc ul { list-style: none; margin-top: 6px; }
+.job-desc ul li { display: grid; grid-template-columns: 16px 1fr; gap: 8px; margin-bottom: 4px; }
+.job-desc ul li::before { content: '–'; color: var(--ink-dim); }
+
+.works-inline { font-size: 13.5px; color: var(--ink-mid); line-height: 1.7; }
+.works-inline em { font-style: italic; color: var(--ink); }
+
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  padding: 4px 10px;
+  border: 1px solid var(--rule);
+  color: var(--ink-mid);
+  background: var(--cream);
+}
+
+/* EDUCATION */
+.edu-item { margin-bottom: 28px; }
+.edu-item:last-child { margin-bottom: 0; }
+.edu-degree { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 600; }
+.edu-school {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--ink-dim);
+  margin-top: 3px;
+}
+.edu-note { font-size: 13.5px; color: var(--ink-mid); margin-top: 4px; }
+
+/* CONTACT */
+.contact-email {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-weight: 300;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+
+/* FOOTER */
+footer { border-top: 1px solid var(--rule); padding: 32px 60px; max-width: 900px; margin: 0 auto; }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.footer-inner p { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: var(--ink-dim); }
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.name    { animation: fadeUp 0.7s ease both; }
+.tagline { animation: fadeUp 0.7s 0.1s ease both; }
+nav      { animation: fadeUp 0.7s 0.2s ease both; }
+main     { animation: fadeUp 0.7s 0.3s ease both; }
+
+/* RESPONSIVE */
+@media (max-width: 680px) {
+  header { padding: 48px 24px 40px; }
+  main { padding: 0 24px 60px; }
+  footer { padding: 24px; }
+  .resume-grid { grid-template-columns: 1fr; }
+  .resume-heading { border-top: none; border-left: 2px solid var(--gold-lt); padding-left: 12px; margin-bottom: 16px; margin-top: 40px; }
+  .resume-grid > .resume-content { margin-top: 0; }
+  .header-top { flex-direction: column; gap: 16px; }
+}
+
+  </style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div class="header-top">
+      <h1 class="name"><a href="index-ita.html">Tommaso <em>Annoni</em></a></h1>
+      <div class="lang-switch">
+        <a href="index.html" class="">EN</a>
+        <a href="index-ita.html" class="active">IT</a>
+      </div>
+    </div>
+    <p class="tagline">Compositore &nbsp;·&nbsp; Sound Designer &nbsp;·&nbsp; Flautista &nbsp;·&nbsp; Insegnante</p>
+    <nav>
+      <a href="index-ita.html" class="active">Profilo</a>
+      <a href="esperienze-ita.html" class="">Esperienze</a>
+      <a href="formazione-ita.html" class="">Formazione</a>
+      <a href="contact-ita.html" class="">Contatti</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <section>
+    <p class="section-label">Profilo</p>
+    <p class="about-text">
+      Tommaso Annoni è un <strong>compositore, sound designer e flautista</strong> italiano attivo nel mondo dei videogiochi, del cinema e della televisione. La sua esperienza spazia dalla composizione originale all'orchestrazione, fino alla post-produzione audio, con crediti che vanno da videogiochi indipendenti premiati a produzioni documentaristiche e fiction di respiro internazionale. Suona il flauto orchestrale e i flauti etnici, e svolge attività di insegnante di musica.
+    </p>
+    <div class="awards">
+      <p class="awards-title">Riconoscimenti e premi selezionati</p>
+      <ul class="award-list">
+        <li><div><strong>Daedalus</strong> — Flautista<span>Fox Production Grant · Selezione e proiezione al Festival de Cannes 2024</span></div></li>
+        <li><div><strong>Sky Blossom</strong> — Assistente Direttore<span>Best Documentary Feature · Yellowstone International Film Festival 2021</span></div></li>
+        <li><div><strong>Two Interviewees</strong> — Compositore<span>Premio Treccani per l'Eccellenza nel Web Italiano</span></div></li>
+        <li><div><strong>Impariamo l'Opera</strong> — Orchestratore<span>Premio Filippo Siebaneck · Premio Franco Abbiati della Critica Musicale Italiana</span></div></li>
+      </ul>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="footer-inner">
+    <p>Tommaso Annoni &nbsp;·&nbsp; Compositore e Flautista</p>
+  </div>
+</footer>
+</body>
+</html>
